@@ -30,11 +30,7 @@ const setLessonTimers = async () => {
     if (delay > 0) setTimer(delay, getLessonEmbed(lesson));
   });
 
-  console.log(
-    `${now.toISOString()} | ${lessons.length} lessons & ${
-      timeouts.length
-    } timeouts`
-  );
+  console.log(`${lessons.length} lessons & ${timeouts.length} timeouts`);
 };
 
 const setTimer = (delay, embed) => {

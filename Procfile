@@ -1,1 +1,1 @@
-worker: node src/bot.cjs
+worker: npm start
