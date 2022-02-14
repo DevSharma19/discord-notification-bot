@@ -19,17 +19,7 @@ client.on("ready", async () => {
 });
 
 const setLessonTimers = async () => {
-  lessons = [
-    {
-      status: 200,
-      url: "https://www.youtube.com/watch?v=q6EoRBvdVPQ",
-      title: "testing lesson",
-      link: "https://www.youtube.com/watch?v=7_X_Q-_Z-_U",
-      date: new Date(2022, 1, 14, 14, 29, 0),
-      teacher: "bruh",
-    },
-  ];
-  // lessons = await getLessons();
+  lessons = await getLessons();
   timeouts.forEach((timeout) => clearTimeout(timeout));
   timeouts = [];
 
