@@ -23,7 +23,8 @@ const setLessonTimers = async () => {
   timeouts.forEach((timeout) => clearTimeout(timeout));
   timeouts = [];
 
-  const now = new Date();
+  // added 5.5 hours to the time to account for timezone
+  const now = new Date() + 5.5 * 60 * 60 * 1000;
   lessons.forEach((lesson) => {
     const delay = lesson.date - now;
 
