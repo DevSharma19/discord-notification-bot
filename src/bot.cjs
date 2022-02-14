@@ -24,13 +24,15 @@ const setLessonTimers = async () => {
   timeouts = [];
 
   // added 5.5 hours to the time to account for timezone
-  const now = new Date() + 5.5 * 60 * 60 * 1000;
+  const now = new Date();
+  now.addHours(5.5);
   lessons.forEach((lesson) => {
     const delay = lesson.date - now;
 
     if (delay > 0) setTimer(delay, getLessonEmbed(lesson));
   });
 
+  console.log(`IST time : ${now.toISOString()}`);
   console.log(`${lessons.length} lessons & ${timeouts.length} timeouts`);
 };
 
@@ -59,6 +61,12 @@ const getLessonEmbed = (lesson) => {
   embed.setThumbnail("https://i.ibb.co/mRK5x7M/School-Slave.gif");
 
   return embed;
+};
+
+// write a function to add hours to a date
+Date.prototype.addHours = function (h) {
+  this.setTime(this.getTime() + h * 60 * 60 * 1000);
+  return this;
 };
 
 // example lessons if required for testing
