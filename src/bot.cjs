@@ -38,12 +38,10 @@ const setLessonTimers = async () => {
 
 const setTimer = (delay, embed) => {
   const timeout = setTimeout(() => {
-    client.channels.fetch(process.env.CHANNEL_ID).then((channel) =>
-      channel.send({
-        content: "<@&909830683332050954> :mega:",
-        embeds: [embed],
-      })
-    );
+    client.channels.cache.get(process.env.CHANNEL_ID).send({
+      content: "<@&909830683332050954> :mega:",
+      embeds: [embed],
+    });
     console.log(`Message sent | ${embed.title}`);
   }, delay);
 
@@ -56,7 +54,7 @@ const getLessonEmbed = (lesson) => {
   embed.setURL(lesson.link);
   embed.setColor("#58efff");
   embed.setDescription(
-    `<t:${lesson.date.getTime() / 1000}>` + "\n" + `**${lesson.teacher}**`
+    `<t:${lesson.date.addHours(-5.5).getTime() / 1000}>` + "\n" + `**${lesson.teacher}**`
   );
   embed.setThumbnail("https://i.ibb.co/mRK5x7M/School-Slave.gif");
 
