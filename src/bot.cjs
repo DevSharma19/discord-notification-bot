@@ -13,23 +13,13 @@ client.on("ready", async () => {
   let managebac = await import("./managebac.js");
   getLessons = managebac.default;
 
-  // add get lessons to lessons every 30 minutes
+  // add get lessons to lessons every 4 hours
   await setLessonTimers();
-  setInterval(async () => await setLessonTimers(), 1800000);
+  setInterval(async () => await setLessonTimers(), 14400000);
 });
 
 const setLessonTimers = async () => {
-  // lessons = await getLessons();
-  const lessons = [
-    {
-      status: 200,
-      url: "https://www.youtube.com/watch?v=q6EoRBvdVPQ",
-      title: "testing lesson",
-      link: "https://www.youtube.com/watch?v=7_X_Q-_Z-_U",
-      date: new Date(2022, 1, 15, 20, 00, 0),
-      teacher: "bruh",
-    },
-  ];
+  lessons = await getLessons();
   timeouts.forEach((timeout) => clearTimeout(timeout));
   timeouts = [];
 
