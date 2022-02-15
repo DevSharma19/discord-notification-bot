@@ -38,7 +38,8 @@ const setLessonTimers = async () => {
 
 const setTimer = (delay, embed) => {
   const timeout = setTimeout(() => {
-    client.channels.cache.get(process.env.CHANNEL_ID).send({
+    const channel = await client.channels.fetch(process.env.CHANNEL_ID);
+    channel.send({
       content: "<@&909830683332050954> :mega:",
       embeds: [embed],
     });
