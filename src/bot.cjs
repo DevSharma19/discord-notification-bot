@@ -19,7 +19,17 @@ client.on("ready", async () => {
 });
 
 const setLessonTimers = async () => {
-  lessons = await getLessons();
+  // lessons = await getLessons();
+  const lessons = [
+    {
+      status: 200,
+      url: "https://www.youtube.com/watch?v=q6EoRBvdVPQ",
+      title: "testing lesson",
+      link: "https://www.youtube.com/watch?v=7_X_Q-_Z-_U",
+      date: new Date(2022, 1, 15, 20, 00, 0),
+      teacher: "bruh",
+    },
+  ];
   timeouts.forEach((timeout) => clearTimeout(timeout));
   timeouts = [];
 
@@ -37,8 +47,8 @@ const setLessonTimers = async () => {
 };
 
 const setTimer = (delay, embed) => {
-  const timeout = setTimeout(() => {
-    const channel = await client.channels.get(process.env.CHANNEL_ID);
+  const timeout = setTimeout(async () => {
+    const channel = await client.channels.fetch(process.env.CHANNEL_ID);
     channel.send({
       content: "<@&909830683332050954> :mega:",
       embeds: [embed],
@@ -55,7 +65,9 @@ const getLessonEmbed = (lesson) => {
   embed.setURL(lesson.link);
   embed.setColor("#58efff");
   embed.setDescription(
-    `<t:${lesson.date.addHours(-5.5).getTime() / 1000}>` + "\n" + `**${lesson.teacher}**`
+    `<t:${lesson.date.addHours(-5.5).getTime() / 1000}>` +
+      "\n" +
+      `**${lesson.teacher}**`
   );
   embed.setThumbnail("https://i.ibb.co/mRK5x7M/School-Slave.gif");
 
