@@ -19,7 +19,25 @@ client.on("ready", async () => {
 });
 
 const setLessonTimers = async () => {
-  lessons = await getLessons();
+//   lessons = await getLessons();
+  const lessons = [
+    {
+      status: 200,
+      url: "https://www.youtube.com/watch?v=q6EoRBvdVPQ",
+      title: "guys it's time !!",
+      link: "https://i.ibb.co/YjT4w4D/274312136-479442083560952-902356903680133127-n.jpg",
+      date: new Date(2022, 1, 22, 2, 21, 0),
+      teacher: "22/2/2022 at 2:22",
+    },
+    {
+      status: 200,
+      url: "https://www.youtube.com/watch?v=q6EoRBvdVPQ",
+      title: "last chance mfs !!",
+      link: "https://i.ibb.co/YjT4w4D/274312136-479442083560952-902356903680133127-n.jpg",
+      date: new Date(2022, 1, 22, 22, 21, 0),
+      teacher: "22/2/2022 at 22:22",
+    },
+  ];
   timeouts.forEach((timeout) => clearTimeout(timeout));
   timeouts = [];
 
@@ -40,7 +58,8 @@ const setTimer = (delay, embed) => {
   const timeout = setTimeout(async () => {
     const channel = await client.channels.fetch(process.env.CHANNEL_ID);
     channel.send({
-      content: "<@&909830683332050954> :mega:",
+//       content: "<@&909830683332050954> :mega:",
+      content: "<@349424080254140418> <@809048029160013844> :mega:",
       embeds: [embed],
     });
     console.log(`Message sent | ${embed.title}`);
